@@ -24,6 +24,7 @@ public class Produto {
 
     private int quantidade;
 
+    // uma categoria pode estar ligada a vários produtos && um produto pode estar ligado a várias categorias
     @ManyToMany
     @JoinTable(
         name = "produto_categoria",
