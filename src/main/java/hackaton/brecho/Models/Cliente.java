@@ -2,9 +2,11 @@ package hackaton.brecho.Models;
 
 import jakarta.persistence.*;
 import java.util.List;
+import lombok.Data;
 
 @Entity
 @Table(name = "cliente")
+@Data
 public class Cliente {
     
     @Id
@@ -29,5 +31,7 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedido> pedidos;
 
-    // getters e setters (lombok?)
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Entrega entrega;
+
 }

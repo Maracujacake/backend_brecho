@@ -3,9 +3,11 @@ package hackaton.brecho.Models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import lombok.Data;
 
 @Entity
 @Table(name = "entregas")
+@Data
 public class Entrega {
     
     @Id
@@ -25,9 +27,11 @@ public class Entrega {
 
     private String estado;
 
-    @OneToOne(mappedBy = "entrega")
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    @OneToOne(mappedBy = "cliente")
+    @OneToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 }

@@ -25,4 +25,7 @@ public class Pedido {
 
     @Column(name = "data_pedido")
     private LocalDateTime dataPedido;
+
+    @OneToOne(mappedBy = "pedido")
+    private Entrega entrega;
 }
