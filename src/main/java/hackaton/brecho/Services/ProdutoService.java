@@ -2,6 +2,7 @@ package hackaton.brecho.Services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hackaton.brecho.Models.Categoria;
@@ -45,5 +46,24 @@ public class ProdutoService {
 
     public void deleteBySKU(String SKU) {
         produtoRepository.deleteBySKU(SKU);
+    }
+
+    public Produto adicionarCategoriaAoProduto(String SKU, String nome) {
+        // Busca o produto pelo ID
+        Produto produto = produtoRepository.findBySKU(SKU)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+        // Busca a categoria pelo ID
+        Categoria categoria = categoriaRepository.findByNome(nome);
+
+        if (categoria == null) {
+            throw new RuntimeException("Categoria não encontrada");
+        }
+
+        // Adiciona a categoria ao produto
+        produto.getCategorias().add(categoria);
+
+        // Salva o produto atualizado
+        return produtoRepository.save(produto);
     }
 }

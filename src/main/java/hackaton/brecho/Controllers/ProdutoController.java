@@ -41,7 +41,13 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.save(produto));
     }
 
-
+    @Operation(summary = "Adiciona uma categoria a um produto - somente ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/{SKU}/categorias/{nomeCategoria}")
+    public ResponseEntity<Produto> adicionarCategoria(@PathVariable String SKU, @PathVariable String nomeCategoria) {
+        Produto produtoAtualizado = produtoService.adicionarCategoriaAoProduto(SKU, nomeCategoria);
+        return ResponseEntity.ok(produtoAtualizado);
+    }
 
 
     // READ - R
