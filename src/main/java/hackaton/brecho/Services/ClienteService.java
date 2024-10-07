@@ -23,6 +23,10 @@ public class ClienteService {
         return clienteRep.findById(id).orElse(null);
     }
 
+    public Cliente findByEmail(String email) {
+        return clienteRep.findByEmail(email).orElse(null);
+    }
+
     public Cliente save(Cliente cliente) {
         return clienteRep.save(cliente);
     }

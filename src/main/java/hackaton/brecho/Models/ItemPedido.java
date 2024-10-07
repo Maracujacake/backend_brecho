@@ -1,5 +1,7 @@
 package hackaton.brecho.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class ItemPedido {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id", nullable = false)
+    @JsonIgnore
     private Pedido pedido;
 
     @ManyToOne
@@ -20,6 +23,47 @@ public class ItemPedido {
 
     private int quantidade;
 
-    private double preco; // Preço do produto no momento da compra
-    
+    private double preco;
+
+    // Getters
+    public Long getId() {
+        return id;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
 }

@@ -1,5 +1,6 @@
 package hackaton.brecho.Models;
-import java.util.Optional;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class ItemCarrinho {
 
     @ManyToOne
     @JoinColumn(name = "carrinho_id", nullable = false)
+    @JsonIgnore
     private Carrinho carrinho;
 
     @ManyToOne // 
@@ -45,8 +47,8 @@ public class ItemCarrinho {
         return produto;
     }
 
-    public void setProduto(Optional<Produto> optionalProduto) {
-        this.produto = optionalProduto.orElse(null);
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public int getQuantidade() {
