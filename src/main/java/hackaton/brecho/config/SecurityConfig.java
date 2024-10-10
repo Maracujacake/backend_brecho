@@ -27,6 +27,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf().disable()
+            .cors()
+            .and()
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("breshow/cliente/register").permitAll() // Permite o registro de clientes
                 .requestMatchers("breshow/cliente/**").authenticated() // Protege o endpoint /me
