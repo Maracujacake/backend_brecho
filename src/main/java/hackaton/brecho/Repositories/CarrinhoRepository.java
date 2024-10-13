@@ -1,5 +1,7 @@
 package hackaton.brecho.Repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
@@ -17,6 +19,7 @@ public interface CarrinhoRepository extends JpaRepository<Carrinho, Long> {
 
     Carrinho findByClienteId(Long clienteId); // carrinho ativo do cliente
 
+    List<Carrinho> findAllByClienteId(Long clienteId); // todos os carrinhos do cliente
 
     // DELETE
     void deleteById(Long id);

@@ -101,4 +101,16 @@ public class CarrinhoController {
         return ResponseEntity.ok(itens);
     }
 
+    // Deleta carrinho(s) do usuário
+    @Operation(summary = "Deleta o carrinho do usuário")
+    @DeleteMapping("/deletar")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<String> deletarCarrinho() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        Cliente cliente = clienteService.findByEmail(email);
+        carrinhoService.deletarCarrinhos(cliente.getId());
+        return ResponseEntity.ok("Carrinho deletado com sucesso");
+    }
+
 }

@@ -180,6 +180,14 @@ public class CarrinhoService {
         // Salva o pedido (cascading salvará os itens do pedido)
         return pedidoRepository.save(pedido);
     }
+
+    //DELETE
+    public void deletarCarrinhos(Long idCliente) {
+        List<Carrinho> carrinho = carrinhoRepository.findAllByClienteId(idCliente);
+        for (Carrinho c : carrinho) {
+            carrinhoRepository.deleteById(c.getId());
+        }
+    }
 }
 
 
