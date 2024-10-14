@@ -9,6 +9,7 @@ import hackaton.brecho.Models.Categoria;
 import hackaton.brecho.Models.Produto;
 import hackaton.brecho.Repositories.CategoriaRepository;
 import hackaton.brecho.Repositories.ProdutoRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ProdutoService {
@@ -44,6 +45,7 @@ public class ProdutoService {
         return produtoRepository.saveAndFlush(prod);
     }
 
+    @Transactional
     public void deleteBySKU(String SKU) {
         produtoRepository.deleteBySKU(SKU);
     }
